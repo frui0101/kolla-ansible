@@ -167,7 +167,7 @@ dns_interface: "{{ network_interface }}"
 tunnel_interface_address: "{{ hostvars[inventory_hostname]['ansible_' + tunnel_interface]['ipv4']['address'] }}"
 
 # Valid options are [ openvswitch, linuxbridge, vmware_nsxv, vmware_nsxv3, vmware_dvs, opendaylight ]
-neutron_plugin_agent: "openvswitch"
+neutron_plugin_agent: "linuxbridge"
 
 # Valid options are [ internal, infoblox ]
 neutron_ipam_driver: "internal"
@@ -407,7 +407,7 @@ openstack_interface: "admin"
 # These roles are required for Kolla to be operation, however a savvy deployer
 # could disable some of these required roles and run their own services.
 enable_glance: "yes"
-enable_haproxy: "yes"
+enable_haproxy: "no"
 enable_keystone: "yes"
 enable_mariadb: "yes"
 enable_memcached: "yes"
@@ -487,7 +487,7 @@ enable_ironic_pxe_uefi: "no"
 enable_iscsid: "{{ (enable_cinder | bool and enable_cinder_backend_iscsi | bool) or enable_ironic | bool }}"
 enable_karbor: "no"
 enable_kafka: "{{ enable_monasca | bool }}"
-enable_kuryr: "no"
+enable_kuryr: "yes"
 enable_magnum: "no"
 enable_manila: "no"
 enable_manila_backend_generic: "no"
@@ -540,7 +540,7 @@ enable_vitrage: "no"
 enable_vmtp: "no"
 enable_watcher: "no"
 enable_zookeeper: "{{ enable_kafka | bool }}"
-enable_zun: "no"
+enable_zun: "yes"
 
 ovs_datapath: "{{ 'netdev' if enable_ovs_dpdk | bool else 'system' }}"
 designate_keystone_user: "designate"

@@ -141,7 +141,7 @@ def main():
     output = client.exec_start(job)
 
     for exp in [JSON_REG, NON_JSON_REG]:
-        m = exp.match(output)
+        m = exp.match(output.decode('utf8'))
         if m:
             inner_output = m.groupdict().get('stdout')
             break

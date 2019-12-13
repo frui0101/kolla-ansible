@@ -61,7 +61,7 @@
        from_json |
        map(attribute='Host') |
        list)
-      | issuperset(expected_compute_service_hosts)
+      is issuperset(expected_compute_service_hosts)
 
 # TODO(yoctozepto): no need to do --by-service if ironic not used
 - name: Discover nova hosts

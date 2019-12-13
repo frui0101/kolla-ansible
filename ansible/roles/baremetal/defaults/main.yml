@@ -9,7 +9,7 @@ enable_docker_repo: true
 # backwards compatibility.
 docker_legacy_packages: >-
   {{ ansible_distribution != 'Ubuntu' or
-     ansible_distribution_version | version_compare('18.04', 'lt') }}
+     ansible_distribution_version is version('18.04', 'lt') }}
 
 # Docker APT repository configuration.
 docker_apt_url: "{% if docker_legacy_packages | bool %}{{ docker_legacy_apt_url }}{% else %}{{ docker_new_apt_url }}{% endif %}"
@@ -77,7 +77,7 @@ docker_runtime_directory: ""
 # https://bugs.launchpad.net/ubuntu/+source/python-setuptools/+bug/1774419.
 easy_install_available: >-
   {{ ansible_distribution != 'Ubuntu' or
-     ansible_distribution_major_version | version_compare(18, 'lt') }}
+     ansible_distribution_major_version is version(18, 'lt') }}
 
 # Ubuntu 18+ bundles nfs-ganesha 2.6.0 with Ceph Mimic packages,
 # which does udp rpcbind test even with NFSv3 disabled - therefore
